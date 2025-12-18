@@ -1,4 +1,4 @@
-# efood-zero
+# efood
 
 Projeto React + Vite + TS + styled-components com:
 - Home com lista de restaurantes
