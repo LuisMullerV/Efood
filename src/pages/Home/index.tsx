@@ -4,12 +4,14 @@ import * as S from './styles'
 
 export default function Home() {
   return (
-    <>
+    <S.Page>
       <S.Hero>
-        <S.HeroOverlay>
-          <S.H1>Viva experiências gastronômicas no conforto da sua casa</S.H1>
-          <S.H2>Escolha um restaurante e peça agora</S.H2>
-        </S.HeroOverlay>
+        <S.HeroContent>
+          <S.HeroTitle>
+            Viva experiências gastronômicas no conforto da sua casa
+          </S.HeroTitle>
+          <S.HeroSubtitle>Escolha um restaurante e peça agora</S.HeroSubtitle>
+        </S.HeroContent>
       </S.Hero>
 
       <S.Container>
@@ -27,6 +29,6 @@ export default function Home() {
           ))}
         </S.Grid>
       </S.Container>
-    </>
+    </S.Page>
   )
 }

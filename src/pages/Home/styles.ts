@@ -1,55 +1,58 @@
 import styled from 'styled-components'
 
+export const Page = styled.main`
+  background: #fff;
+`
+
+// Faixa clara do topo (igual o layout final)
 export const Hero = styled.section`
-  height: 260px;
-  background-image: linear-gradient(rgba(0,0,0,.62), rgba(0,0,0,.62)),
-    url('https://images.unsplash.com/photo-1529692236671-f1dc7c0ac7a5?auto=format&fit=crop&w=1800&q=60');
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: flex-end;
+  background: #ffebd9;
+  padding: 56px 16px 40px;
 `
 
-export const HeroOverlay = styled.div`
-  max-width: 1100px;
-  width: 100%;
+export const HeroContent = styled.div`
+  max-width: 1024px;
   margin: 0 auto;
-  padding: 34px 16px;
-  color: #fff;
+  text-align: center;
 `
 
-export const H1 = styled.h1`
+export const HeroTitle = styled.h2`
   margin: 0;
-  font-size: 44px;
-  letter-spacing: 0.2px;
+  font-size: 30px;
+  line-height: 1.2;
+  font-weight: 800;
+  color: #e66767;
 
-  @media (max-width: 700px) {
-    font-size: 30px;
+  @media (min-width: 768px) {
+    font-size: 42px;
   }
 `
 
-export const H2 = styled.p`
-  margin: 8px 0 0;
-  font-size: 16px;
+export const HeroSubtitle = styled.p`
+  margin: 10px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #e66767;
   opacity: 0.9;
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
 `
 
 export const Container = styled.div`
-  max-width: 1100px;
+  max-width: 1024px;
   margin: 0 auto;
-  padding: 26px 16px;
+  padding: 24px 16px 60px;
 `
 
+// Grid de restaurantes igual ao layout final (2 colunas no desktop)
 export const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
   gap: 22px;
 
-  @media (max-width: 960px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: 640px) {
-    grid-template-columns: 1fr;
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
   }
 `

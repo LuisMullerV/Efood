@@ -10,29 +10,36 @@ type Props = {
   foto: string
 }
 
-export default function ProductCard({ id, nome, descricao, serve, preco, foto }: Props) {
-  const { addItem } = useCart()
+const ProductCard = ({ id, nome, descricao, serve, preco, foto }: Props) => {
+  const { addItem, openCart } = useCart()
 
   return (
     <S.Card>
       <S.Img src={foto} alt={nome} />
+
       <S.Body>
         <S.TitleRow>
           <S.Title>{nome}</S.Title>
           <S.Badge>{serve}</S.Badge>
         </S.TitleRow>
+
         <S.Desc>{descricao}</S.Desc>
 
-        <S.Actions>
+        <S.Footer>
           <S.Price>R$ {preco.toFixed(2).replace('.', ',')}</S.Price>
-          <S.BuyBtn
+          <S.Button
             type="button"
-            onClick={() => addItem({ id, name: nome, price: preco, image: foto })}
+            onClick={() => {
+              addItem({ id, name: nome, price: preco, image: foto })
+              openCart()
+            }}
           >
             Adicionar
-          </S.BuyBtn>
-        </S.Actions>
+          </S.Button>
+        </S.Footer>
       </S.Body>
     </S.Card>
   )
 }
+
+export default ProductCard

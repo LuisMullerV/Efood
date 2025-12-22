@@ -4,14 +4,9 @@ export const Card = styled.div`
   border: 2px solid #e66767;
   background: #2f2f2f;
   color: #fff;
-  display: grid;
-  grid-template-columns: 180px 1fr;
-  gap: 0;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
-
-  @media (max-width: 700px) {
-    grid-template-columns: 1fr;
-  }
 `
 
 export const Img = styled.img`
@@ -20,8 +15,12 @@ export const Img = styled.img`
   object-fit: cover;
 `
 
+
 export const Body = styled.div`
-  padding: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `
 
 export const TitleRow = styled.div`
@@ -33,7 +32,7 @@ export const TitleRow = styled.div`
 
 export const Title = styled.h3`
   margin: 0;
-  font-size: 18px;
+  font-size: 22px;
 `
 
 export const Badge = styled.span`
@@ -46,42 +45,35 @@ export const Badge = styled.span`
 `
 
 export const Desc = styled.p`
-  margin: 10px 0 14px;
+  margin: 6px 0 10px;
   font-size: 14px;
   line-height: 22px;
   opacity: 0.9;
 `
 
-export const Actions = styled.div`
+export const Footer = styled.div`
+  margin-top: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
 `
+
 
 export const Price = styled.span`
   font-weight: 700;
+  font-size: 18px;
 `
 
-export const BuyBtn = styled.button`
+export const Button = styled.button`
   border: 0;
   background: #ffebd9;
   color: #e66767;
   font-weight: 800;
-  padding: 10px 12px;
+  padding: 10px 16px;
   cursor: pointer;
   border-radius: 10px;
-  &:hover { filter: brightness(0.98); }
+
+  &:hover {
+    filter: brightness(0.98);
+  }
 `
-
-export const Image = Img
-export const Content = Body
-export const TopRow = TitleRow
-export const Tag = Badge
-export const Description = Desc
-export const Footer = Actions
-export const Button = BuyBtn
-
-export const ProductBtn = BuyBtn
-export const ItemImg = Img
-export const ItemName = Title

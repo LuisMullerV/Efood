@@ -64,5 +64,15 @@ export const ProductsTitle = styled.h2`
 
 export const ProductsGrid = styled.div`
   display: grid;
-  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
 `
+
