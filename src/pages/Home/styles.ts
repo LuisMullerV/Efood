@@ -1,39 +1,56 @@
 import styled from 'styled-components'
+import pattern from '../../assets/Vector.png'
 
 export const Page = styled.main`
-  background: #fff;
+  background: #fff8f2;
+  min-height: 100vh;
 `
 
-// Faixa clara do topo (igual o layout final)
+
 export const Hero = styled.section`
-  background: #ffebd9;
-  padding: 56px 16px 40px;
+  position: relative;
+
+  height: 384px;
+  background-color: #ffebd9;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  justify-content: center;
+
 `
 
-export const HeroContent = styled.div`
-  max-width: 1024px;
-  margin: 0 auto;
-  text-align: center;
+
+export const Logo = styled.img`
+  width: 125px;
+  height: 57.5px;
 `
 
 export const HeroTitle = styled.h2`
-  margin: 0;
-  font-size: 30px;
-  line-height: 1.2;
+  width: 565px;          
+  margin: 64px 0 0;
+  text-align: center;
+
+  font-size: 36px;
+  line-height: 42px;
   font-weight: 800;
   color: #e66767;
 
-  @media (min-width: 768px) {
-    font-size: 42px;
+  @media (max-width: 600px) {
+    width: 100%;
+    padding: 0 16px;
   }
 `
 
 export const HeroSubtitle = styled.p`
-  margin: 10px 0 0;
+  margin-top: 16px;
+
   font-size: 14px;
   line-height: 1.6;
   color: #e66767;
   opacity: 0.9;
+  text-align: center;
 
   @media (min-width: 768px) {
     font-size: 16px;
@@ -43,14 +60,15 @@ export const HeroSubtitle = styled.p`
 export const Container = styled.div`
   max-width: 1024px;
   margin: 0 auto;
-  padding: 24px 16px 60px;
+  padding: 40px 16px 80px;
 `
 
-// Grid de restaurantes igual ao layout final (2 colunas no desktop)
 export const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  gap: 22px;
+
+  row-gap: 48px;
+  column-gap: 88px;
 
   @media (min-width: 768px) {
     grid-template-columns: 1fr 1fr;

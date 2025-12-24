@@ -1,17 +1,18 @@
 import RestaurantCard from '../../components/RestaurantCard'
 import { restaurantes } from '../../data/restaurantes'
 import * as S from './styles'
+import logo from '../../assets/logo.png'
 
 export default function Home() {
   return (
     <S.Page>
       <S.Hero>
-        <S.HeroContent>
-          <S.HeroTitle>
-            Viva experiências gastronômicas no conforto da sua casa
-          </S.HeroTitle>
-          <S.HeroSubtitle>Escolha um restaurante e peça agora</S.HeroSubtitle>
-        </S.HeroContent>
+        <S.Logo src={logo} alt="efood" />
+
+        <S.HeroTitle>
+          Viva experiências gastronômicas no conforto da sua casa
+        </S.HeroTitle>
+
       </S.Hero>
 
       <S.Container>
@@ -23,6 +24,7 @@ export default function Home() {
               nome={r.nome}
               tipo={r.tipo}
               nota={r.nota}
+              destaque={r.destaque}
               descricao={r.descricao}
               imagem={r.imagem}
             />

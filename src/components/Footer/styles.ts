@@ -1,30 +1,52 @@
 import styled from 'styled-components'
 
-export const Wrapper = styled.footer`
-  margin-top: 40px;
-  background: #f3a0a0;
-  border-top: 4px solid #e66767;
+export const Footer = styled.footer`
+  background: #ffebd9;
+  width: 100%;
+
+
+  min-height: 298px;
+  padding: 40px 16px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
-export const Inner = styled.div`
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 28px 16px;
-  text-align: center;
+export const LogoBox = styled.div`
+  padding: 8px 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 `
 
-export const Badge = styled.div`
-  display: inline-block;
-  padding: 6px 14px;
-  border: 2px solid #1f1f1f;
-  font-weight: 700;
-  background: #f3a0a0;
+export const LogoImage = styled.img`
+  height: 57.5px;
+  width: 125px;
+  display: block;
+`
+
+export const Social = styled.div`
+  margin-top: 24px;
+  display: flex;
+  gap: 8px;
+
+  img {
+    width: 24px;
+    height: 24px;
+    display: block;
+  }
 `
 
 export const Text = styled.p`
-  max-width: 680px;
-  margin: 12px auto 0;
-  font-size: 12px;
-  line-height: 18px;
-  opacity: 0.9;
+  margin-top: auto;
+  margin-bottom: 0;
+
+  max-width: 480px;
+  text-align: center;
+
+  color: #e66767;
+  font-family: Roboto, sans-serif;
+  font-size: 10px;
+  line-height: 16px;
 `

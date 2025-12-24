@@ -85,6 +85,7 @@ export const restaurantes: Restaurante[] = [
     nome: 'Hioki Sushi',
     tipo: 'Japonesa',
     nota: 4.8,
+    destaque: true,
     descricao: 'Sushi do jeito certo: bonito, rápido e viciante.',
     imagem:
       'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1600&auto=format&fit=crop',

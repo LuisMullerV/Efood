@@ -1,87 +1,124 @@
 import styled from 'styled-components'
 
 export const Card = styled.div`
-  border: 2px solid #e66767;
-  background: #2f2f2f;
+  border: 1px solid #e66767;
+  background: #ffffff;
   display: flex;
   flex-direction: column;
-  position: relative;
   overflow: hidden;
+  height: 100%;
+`
+
+export const ImageWrapper = styled.div`
+  position: relative;
 `
 
 export const Image = styled.img`
   width: 100%;
-  height: 210px;
+  height: 217px;
   object-fit: cover;
   display: block;
 `
 
 export const Content = styled.div`
-  padding: 12px;
-  color: #fff;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 `
 
 export const TopRow = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 12px;
 `
 
 export const Name = styled.h3`
   margin: 0;
   font-size: 18px;
+  font-weight: 700;
+  color: #e66767;
 `
 
 export const Rate = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  font-family: Roboto, sans-serif;
   font-size: 18px;
   font-weight: 700;
+  line-height: 18px;
+  color: #e66767;
+
+  font-variant-numeric: tabular-nums;
+`
+
+
+export const Star = styled.span`
+    color: #ffb930;
+  font-size: 18px;
+  line-height: 18px;
+
+  position: relative;
+  top: 1px;
+`
+
+export const Tags = styled.div`
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  gap: 8px;
 `
 
 export const Tag = styled.span`
   display: inline-block;
-  margin-top: 8px;
-  padding: 4px 8px;
+  padding: 4px 6px;
   background: #e66767;
-  color: #1b1b1b;
+  color: #fff;
   font-size: 12px;
   font-weight: 700;
 `
 
 export const Description = styled.p`
-  margin: 12px 0;
+  margin: 8px 0 0;
+  font-family: Roboto, sans-serif;
   font-size: 14px;
+  font-weight: 400;
   line-height: 22px;
-  opacity: 0.9;
+  color: #e66767;
+
+  height: 88px;
+  overflow: hidden;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
 `
+
 
 export const Button = styled.a`
-  display: block;
-  width: 100%;
-  text-align: center;
-  padding: 10px 12px;
-  background: #ffebd9;
-  color: #e66767;
-  font-weight: 700;
+  width: 82px;
+  height: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  
+  background: #e66767;
+  color: #FFEBD9;
   text-decoration: none;
   cursor: pointer;
-
-  &:hover { filter: brightness(0.98); }
   
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  
+  line-height: 12px;
+  letter-spacing: 0;
+  
+  margin-top: auto;
 `
-export const ProductCard = styled.div`
-  display: flex;
-  gap: 16px;
-  padding: 16px;
-  background: #2f2f2f;
-  border: 2px solid #e66767;
-  align-items: center;
-`
-export const ProductImage = styled.img`
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 4px;
-  flex-shrink: 0;
-`
-
