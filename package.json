@@ -1,13 +1,13 @@
 {
-  "name": "efood-zero",
+  "name": "efood",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "scripts": {
-    "dev": "vite",
+"scripts": {
+  "dev": "vite",
   "build": "tsc -b && node ./node_modules/vite/bin/vite.js build",
-
-    "preview": "vite preview"
+  "vercel-build": "tsc -b && node ./node_modules/vite/bin/vite.js build",
+  "preview": "vite preview"
   },
   "dependencies": {
     "react": "^18.3.1",
