@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import * as S from './styles'
+import star from '../../assets/star.png'
 
 type Props = {
   id: number
@@ -25,8 +26,9 @@ export default function RestaurantCard({ id, nome, tipo, nota, destaque, descric
         <S.TopRow>
           <S.Name>{nome}</S.Name>
           <S.Rate>
-            {nota.toFixed(1)}
-            <S.Star aria-hidden>★</S.Star>
+            <span>{nota.toFixed(1)}</span>
+
+              <img src={star} alt="Avaliação" />
           </S.Rate>
         </S.TopRow>
         <S.Description>{descricao}</S.Description>

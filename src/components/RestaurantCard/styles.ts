@@ -36,33 +36,34 @@ export const TopRow = styled.div`
 
 export const Name = styled.h3`
   margin: 0;
+  font-family: Roboto, sans-serif;
   font-size: 18px;
   font-weight: 700;
   color: #e66767;
 `
 
 export const Rate = styled.span`
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 
   font-family: Roboto, sans-serif;
-  font-size: 18px;
   font-weight: 700;
-  line-height: 18px;
+  font-size: 18px;
+  line-height: 100%;
   color: #e66767;
 
-  font-variant-numeric: tabular-nums;
-`
+  span {
+    color: inherit;
+    font: inherit;
+    line-height: inherit;
+  }
 
-
-export const Star = styled.span`
-    color: #ffb930;
-  font-size: 18px;
-  line-height: 18px;
-
-  position: relative;
-  top: 1px;
+  img {
+    width: 21px;   /* Figma */
+    height: 20px;  /* Figma */
+    display: block;
+  }
 `
 
 export const Tags = styled.div`
