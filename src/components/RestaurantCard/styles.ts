@@ -122,3 +122,17 @@ export const Button = styled.a`
   
   margin-top: auto;
 `
+export const MoreButton = styled.button`
+  width: 100%;
+  border: 0;
+  background: #e66767;
+  color: #fff;
+  font-weight: 800;
+  padding: 8px 12px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.9;
+  }
+`
+

@@ -36,9 +36,23 @@ export const Close = styled.button`
   width: 44px;
   height: 44px;
   border: 0;
-  background: rgba(255, 255, 255, 0.5);
+  background: transparent;
   cursor: pointer;
-  font-size: 26px;
-  line-height: 1;
-  border-radius: 12px;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
 `
+
+

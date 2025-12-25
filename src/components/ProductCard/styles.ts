@@ -1,79 +1,65 @@
 import styled from 'styled-components'
 
 export const Card = styled.div`
+  background: #e66767;
   border: 2px solid #e66767;
-  background: #2f2f2f;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+`
+
+export const ImageWrap = styled.div`
+  padding: 10px;
+  background: #e66767;
 `
 
 export const Img = styled.img`
   width: 100%;
-  height: 180px;
+  height: 170px;
   object-fit: cover;
+  display: block;
 `
-
 
 export const Body = styled.div`
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-`
-
-export const TitleRow = styled.div`
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
+  padding: 14px;
+  color: #fff;
 `
 
 export const Title = styled.h3`
   margin: 0;
-  font-size: 22px;
-`
-
-export const Badge = styled.span`
-  font-size: 12px;
-  font-weight: 700;
-  background: #e66767;
-  color: #1b1b1b;
-  padding: 4px 8px;
-  white-space: nowrap;
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 100%;
+  letter-spacing:100%;
 `
 
 export const Desc = styled.p`
-  margin: 6px 0 10px;
-  font-size: 14px;
-  line-height: 22px;
+  margin: 10px 0 14px;
+  font-size: 12px;
+  line-height: 1.6;
   opacity: 0.9;
 `
 
-export const Footer = styled.div`
-  margin-top: auto;
+export const Actions = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 8px;
+
+  margin-top: 8px;
 `
 
 
-export const Price = styled.span`
-  font-weight: 700;
-  font-size: 18px;
-`
 
-export const Button = styled.button`
+
+export const AddButton = styled.button`
+  width: 304px;   
+  height: 24px;          
+
   border: 0;
   background: #ffebd9;
   color: #e66767;
   font-weight: 800;
-  padding: 10px 16px;
-  cursor: pointer;
-  border-radius: 10px;
+  font-size: 12px;
 
-  &:hover {
-    filter: brightness(0.98);
-  }
+  padding: 0;
+  margin: 8px 0; 
+
+  cursor: pointer;
 `

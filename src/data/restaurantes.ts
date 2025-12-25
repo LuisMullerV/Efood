@@ -30,7 +30,7 @@ export const restaurantes: Restaurante[] = [
     produtos: [
       {
         id: 101,
-        nome: 'Pizza Margherita',
+        nome: 'Pizza Marguerita',
         descricao: 'Tomate, mussarela e manjericão. Simples e perfeita.',
         serve: '2 a 3 pessoas',
         preco: 60.9,

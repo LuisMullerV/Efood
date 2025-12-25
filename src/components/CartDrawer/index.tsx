@@ -5,6 +5,8 @@ import DeliveryStep from './steps/DeliveryStep'
 import PaymentStep from './steps/PaymentStep'
 import ConfirmationStep from './steps/ConfirmationStep'
 import * as S from './styles'
+import fecharIcon from '../../assets/fechar.png'
+
 
 export default function CartDrawer() {
   const { state, closeCart } = useCart()
@@ -25,8 +27,9 @@ export default function CartDrawer() {
         <S.Top>
           <S.StepPill>{label(state.step)}</S.StepPill>
           <S.Close type="button" onClick={closeCart} aria-label="Fechar">
-            ×
+            <img src={fecharIcon} alt="Fechar carrinho" />
           </S.Close>
+
         </S.Top>
 
         {state.step === 'cart' && <CartStep />}
