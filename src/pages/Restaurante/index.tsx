@@ -46,16 +46,18 @@ export default function Restaurante() {
       {/* BANNER */}
       <S.Banner style={{ backgroundImage: `url(${restaurante.imagem})` }}>
         <S.BannerOverlay>
-          <S.TopBar>
-            <S.BackButton type="button" onClick={() => navigate(-1)}>
-              ← Voltar
-            </S.BackButton>
-          </S.TopBar>
+          {/* TOPO ESQUERDA */}
+          <S.BannerContent>
+            <S.Small>{restaurante.tipo}</S.Small>
+          </S.BannerContent>
 
-          <S.Small>{restaurante.tipo}</S.Small>
-          <S.Title>{restaurante.nome}</S.Title>
+          {/* BAIXO ESQUERDA */}
+          <S.BannerContent>
+            <S.Title>{restaurante.nome}</S.Title>
+          </S.BannerContent>
         </S.BannerOverlay>
       </S.Banner>
+
 
       {/* LISTA DE PRODUTOS */}
       <S.Container>
@@ -78,21 +80,21 @@ export default function Restaurante() {
       </S.Container>
 
       {/* MODAL DE MAIS DETALHES */}
-  <ProductModal
-    isOpen={isModalOpen}
-    onClose={closeDetails}
-    product={selectedProduct}
-    onAdd={() => {
-      addItem({
-        id: selectedProduct.id,
-        name: selectedProduct.nome,
-        price: selectedProduct.preco,
-        image: selectedProduct.foto
-      })
-      closeDetails()
-      openCart()
-    }}
-  />
+      <ProductModal
+        isOpen={isModalOpen}
+        onClose={closeDetails}
+        product={selectedProduct}
+        onAdd={() => {
+          addItem({
+            id: selectedProduct.id,
+            name: selectedProduct.nome,
+            price: selectedProduct.preco,
+            image: selectedProduct.foto
+          })
+          closeDetails()
+          openCart()
+        }}
+      />
 
     </>
   )

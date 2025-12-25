@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Banner = styled.section`
-  height: 240px;
+  height: 280px;
   background-size: cover;
   background-position: center;
   position: relative;
@@ -9,57 +9,48 @@ export const Banner = styled.section`
 
 export const BannerOverlay = styled.div`
   height: 100%;
-  background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55));
-  color: #fff;
+  background: rgba(0, 0, 0, 0.25);
+
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: 18px 16px 26px;
+  justify-content: space-between;
+  padding: 24px 0;
 `
 
-export const TopBar = styled.div`
-  position: absolute;
-  top: 12px;
-  left: 16px;
-`
-
-export const BackButton = styled.button`
-  border: 0;
-  background: rgba(255, 255, 255, 0.25);
-  color: #fff;
-  padding: 10px 12px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 800;
-  backdrop-filter: blur(6px);
-
-  &:hover { background: rgba(255, 255, 255, 0.3); }
+export const BannerContent = styled.div`
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 16px;
+  width: 100%;
 `
 
 export const Small = styled.span`
-  font-size: 14px;
-  font-weight: 800;
+  display: block;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 100;
   opacity: 0.95;
 `
 
-export const Title = styled.h1`
-  margin: 4px 0 0;
-  font-size: 44px;
-
-  @media (max-width: 700px) {
-    font-size: 32px;
-  }
+export const Title = styled.h2`
+  color: #fff;
+  font-size: 32px;
+  font-weight: 900;
+  margin: 0;
+  line-height: 1.1;
 `
 
 export const Container = styled.div`
-  max-width: 1100px;
+  max-width: 1024px;
   margin: 0 auto;
-  padding: 22px 16px;
+  padding: 32px 16px 80px;
 `
 
 export const ProductsTitle = styled.h2`
-  margin: 0 0 14px;
-  font-size: 22px;
+  margin: 0 0 22px;
+  font-size: 32px;
+  font-weight: 900;
+  color: #111;
 `
 
 export const ProductsGrid = styled.div`
@@ -75,4 +66,3 @@ export const ProductsGrid = styled.div`
     grid-template-columns: 1fr;
   }
 `
-

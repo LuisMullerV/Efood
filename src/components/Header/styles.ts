@@ -1,49 +1,69 @@
 import styled from 'styled-components'
 
-export const Bar = styled.header`
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: #f3a0a0;
-  border-bottom: 1px solid #eee;
+export const Wrapper = styled.header`
+  background: #ffebd9;
+  padding: 24px 16px;
 `
 
 export const Inner = styled.div`
-  max-width: 1100px;
+  max-width: 1024px;
   margin: 0 auto;
-  padding: 14px 16px;
-  display: flex;
+
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
 `
 
-export const Brand = styled.a`
-  text-decoration: none;
-  font-size: 26px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+export const Left = styled.div`
+  justify-self: start;
+`
+
+export const Center = styled.div`
+  justify-self: center;
 `
 
 export const Right = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  justify-self: end;
 `
 
-export const NavLink = styled.a`
+export const LeftText = styled.span`
+  color: #e66767;
+  font-weight: 900;
+  font-size: 18px;
+`
+
+export const LeftLink = styled.a`
+  color: #e66767;
+  font-weight: 900;
+  font-size: 18px;
   text-decoration: none;
-  font-weight: 700;
-  padding: 8px 10px;
-  border-radius: 8px;
-  &:hover { background: #f6f6f6; }
+
+  &:hover {
+    opacity: 0.9;
+  }
 `
 
-export const CartBtn = styled.button`
-  border: 1px solid #ddd;
-  background: #f7f7f7;
-  padding: 10px 12px;
-  border-radius: 10px;
+export const Logo = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    height: 34px; 
+    display: block;
+  }
+`
+
+export const CartInfo = styled.button`
+  border: 0;
+  background: transparent;
   cursor: pointer;
-  font-weight: 700;
-  &:hover { background: #efefef; }
+
+  color: #e66767;
+  font-weight: 900;
+  font-size: 16px;
+
+  &:hover {
+    opacity: 0.9;
+  }
 `

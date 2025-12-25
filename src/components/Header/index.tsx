@@ -2,31 +2,42 @@ import { Link, useLocation } from 'react-router-dom'
 import { useCart } from '../../contexts/useCart'
 import * as S from './styles'
 
-export default function Header() {
-  const { state, openCart } = useCart()
-  const location = useLocation()
+import logo from '../../assets/logo.png'
 
-  const qty = state.items.reduce((acc, i) => acc + i.quantity, 0)
+export default function Header() {
+  const location = useLocation()
+  const { state, openCart } = useCart()
+
+  const isHome = location.pathname === '/'
 
   return (
-    <S.Bar>
+    <S.Wrapper>
       <S.Inner>
-        <S.Brand as={Link} to="/">
-          efood
-        </S.Brand>
-
-        <S.Right>
-          {location.pathname !== '/' && (
-            <S.NavLink as={Link} to="/">
-              Home
-            </S.NavLink>
+        {/* ESQUERDA */}
+        <S.Left>
+          {isHome ? (
+            <S.LeftText>Restaurantes</S.LeftText>
+          ) : (
+            <S.LeftLink as={Link} to="/">
+              Restaurantes
+            </S.LeftLink>
           )}
+        </S.Left>
 
-          <S.CartBtn type="button" onClick={openCart}>
-            Carrinho ({qty})
-          </S.CartBtn>
+        {/* CENTRO */}
+        <S.Center>
+          <S.Logo as={Link} to="/" aria-label="Ir para a Home">
+            <img src={logo} alt="efood" />
+          </S.Logo>
+        </S.Center>
+
+        {/* DIREITA */}
+        <S.Right>
+          <S.CartInfo type="button" onClick={openCart}>
+            {state.items.length} produto(s) no carrinho
+          </S.CartInfo>
         </S.Right>
       </S.Inner>
-    </S.Bar>
+    </S.Wrapper>
   )
 }
