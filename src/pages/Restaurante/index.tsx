@@ -1,28 +1,66 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import ProductCard from '../../components/ProductCard'
 import ProductModal from '../../components/ProductModal'
-import { restaurantes } from '../../data/restaurantes'
+import { getRestauranteById } from '../../services/api'
 import { useCart } from '../../contexts/useCart'
 import * as S from './styles'
+
+type Produto = {
+  id: number
+  nome: string
+  descricao: string
+  serve: string
+  preco: number
+  foto: string
+}
+
+type RestauranteType = {
+  id: number
+  nome: string
+  tipo: string
+  imagem: string
+  produtos: Produto[]
+}
 
 export default function Restaurante() {
   const navigate = useNavigate()
   const params = useParams()
   const id = Number(params.id)
 
-  const restaurante = useMemo(
-    () => restaurantes.find(r => r.id === id),
-    [id]
-  )
+  const [restaurante, setRestaurante] = useState<RestauranteType | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
 
-  const [selectedProduct, setSelectedProduct] = useState<any>(null)
+  const [selectedProduct, setSelectedProduct] = useState<Produto | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const { addItem, openCart } = useCart()
 
+  useEffect(() => {
+    let isMounted = true
+    setLoading(true)
+    setError('')
 
-  function openDetails(product: any) {
+    getRestauranteById(id)
+      .then((data) => {
+        if (!isMounted) return
+        setRestaurante((data as RestauranteType) ?? null)
+        if (!data) setError('Restaurante não encontrado.')
+      })
+      .catch(() => {
+        if (isMounted) setError('Não foi possível carregar o restaurante.')
+      })
+      .finally(() => {
+        if (isMounted) setLoading(false)
+      })
+
+    return () => {
+      isMounted = false
+    }
+  }, [id])
+
+  function openDetails(product: Produto) {
     setSelectedProduct(product)
     setIsModalOpen(true)
   }
@@ -32,10 +70,18 @@ export default function Restaurante() {
     setSelectedProduct(null)
   }
 
-  if (!restaurante) {
+  if (loading) {
     return (
       <S.Container>
-        <p>Restaurante não encontrado.</p>
+        <p>Carregando...</p>
+      </S.Container>
+    )
+  }
+
+  if (!restaurante || error) {
+    return (
+      <S.Container>
+        <p>{error || 'Restaurante não encontrado.'}</p>
         <button onClick={() => navigate('/')}>Voltar</button>
       </S.Container>
     )
@@ -46,25 +92,22 @@ export default function Restaurante() {
       {/* BANNER */}
       <S.Banner style={{ backgroundImage: `url(${restaurante.imagem})` }}>
         <S.BannerOverlay>
-          {/* TOPO ESQUERDA */}
           <S.BannerContent>
             <S.Small>{restaurante.tipo}</S.Small>
           </S.BannerContent>
 
-          {/* BAIXO ESQUERDA */}
           <S.BannerContent>
             <S.Title>{restaurante.nome}</S.Title>
           </S.BannerContent>
         </S.BannerOverlay>
       </S.Banner>
 
-
       {/* LISTA DE PRODUTOS */}
       <S.Container>
         <S.ProductsTitle>Cardápio</S.ProductsTitle>
 
         <S.ProductsGrid>
-          {restaurante.produtos.map(p => (
+          {restaurante.produtos.map((p) => (
             <ProductCard
               key={p.id}
               id={p.id}
@@ -85,6 +128,8 @@ export default function Restaurante() {
         onClose={closeDetails}
         product={selectedProduct}
         onAdd={() => {
+          if (!selectedProduct) return
+
           addItem({
             id: selectedProduct.id,
             name: selectedProduct.nome,
@@ -95,7 +140,6 @@ export default function Restaurante() {
           openCart()
         }}
       />
-
     </>
   )
 }
