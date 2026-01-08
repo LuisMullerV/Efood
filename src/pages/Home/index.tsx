@@ -32,11 +32,9 @@ export default function Home() {
     <S.Page>
       <S.Hero>
         <S.Logo src={logo} alt="efood" />
-
         <S.HeroTitle>
           Viva experiências gastronômicas no conforto da sua casa
         </S.HeroTitle>
-
       </S.Hero>
 
       <S.Container>
@@ -46,16 +44,7 @@ export default function Home() {
         {!loading && !error && (
           <S.Grid>
             {restaurantes.map((r) => (
-              <RestaurantCard
-                key={r.id}
-                id={r.id}
-                nome={r.nome}
-                tipo={r.tipo}
-                nota={r.nota}
-                destaque={r.destaque}
-                descricao={r.descricao}
-                imagem={r.imagem}
-              />
+              <RestaurantCard key={r.id} {...r} />
             ))}
           </S.Grid>
         )}

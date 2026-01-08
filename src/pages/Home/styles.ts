@@ -1,76 +1,77 @@
 import styled from 'styled-components'
-import pattern from '../../assets/Vector.png'
+import Vector from '../../assets/Vector.svg'
 
 export const Page = styled.main`
-  background: #fff8f2;
-  min-height: 100vh;
+  background-color: #fff8f2;
 `
-
 
 export const Hero = styled.section`
   position: relative;
-
+  width: 100%;
   height: 384px;
   background-color: #ffebd9;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  
-  justify-content: center;
 
+  padding-top: 64px;
+  box-sizing: border-box;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+
+    background-image: url(${Vector});
+    background-repeat: repeat;
+
+    background-size: 64px 64px;
+
+    background-position: 0 -24px;
+
+    opacity: 1;
+    filter: opacity(0.12);
+
+    pointer-events: none;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
 `
-
 
 export const Logo = styled.img`
   width: 125px;
   height: 57.5px;
+
+  margin: 0 0 156px;
 `
 
 export const HeroTitle = styled.h2`
-  width: 565px;          
-  margin: 64px 0 0;
+  max-width: 540px;
+  margin: 0;
   text-align: center;
 
   font-size: 36px;
   line-height: 42px;
   font-weight: 800;
   color: #e66767;
-
-  @media (max-width: 600px) {
-    width: 100%;
-    padding: 0 16px;
-  }
-`
-
-export const HeroSubtitle = styled.p`
-  margin-top: 16px;
-
-  font-size: 14px;
-  line-height: 1.6;
-  color: #e66767;
-  opacity: 0.9;
-  text-align: center;
-
-  @media (min-width: 768px) {
-    font-size: 16px;
-  }
 `
 
 export const Container = styled.div`
   max-width: 1024px;
   margin: 0 auto;
-  padding: 40px 16px 80px;
+  padding: 80px 16px;
 `
 
 export const Grid = styled.div`
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 472px 472px;
 
+  column-gap: 80px;
   row-gap: 48px;
-  column-gap: 88px;
 
-  @media (min-width: 768px) {
-    grid-template-columns: 1fr 1fr;
-  }
+  justify-content: center;
 `

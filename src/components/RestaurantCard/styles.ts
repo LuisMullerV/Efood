@@ -20,11 +20,29 @@ export const Image = styled.img`
   display: block;
 `
 
+export const Tags = styled.div`
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  gap: 8px;
+`
+
+export const Tag = styled.span<{ $variant?: 'highlight' | 'category' }>`
+  display: inline-block;
+  padding: 4px 6px;
+  background: #e66767;
+  color: #fff;
+  font-size: 12px;
+
+  font-weight: ${(props) => (props.$variant === 'highlight' ? 600 : 400)};
+`
+
 export const Content = styled.div`
   padding: 8px;
   display: flex;
   flex-direction: column;
-  flex: 1;
+  flex: 1; 
 `
 
 export const TopRow = styled.div`
@@ -53,38 +71,15 @@ export const Rate = styled.span`
   line-height: 100%;
   color: #e66767;
 
-  span {
-    color: inherit;
-    font: inherit;
-    line-height: inherit;
-  }
-
   img {
-    width: 21px;   /* Figma */
-    height: 20px;  /* Figma */
+    width: 21px;
+    height: 20px;
     display: block;
   }
 `
 
-export const Tags = styled.div`
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  display: flex;
-  gap: 8px;
-`
-
-export const Tag = styled.span`
-  display: inline-block;
-  padding: 4px 6px;
-  background: #e66767;
-  color: #fff;
-  font-size: 12px;
-  font-weight: 700;
-`
-
 export const Description = styled.p`
-  margin: 8px 0 0;
+  margin: 8px 0 16px;
   font-family: Roboto, sans-serif;
   font-size: 14px;
   font-weight: 400;
@@ -99,41 +94,22 @@ export const Description = styled.p`
   -webkit-box-orient: vertical;
 `
 
-
 export const Button = styled.a`
   width: 82px;
   height: 24px;
 
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  
   background: #e66767;
-  color: #FFEBD9;
+  color: #ffebd9;
   text-decoration: none;
-  cursor: pointer;
-  
+
   font-family: Roboto, sans-serif;
   font-size: 14px;
   font-weight: 700;
-  
   line-height: 12px;
-  letter-spacing: 0;
-  
-  margin-top: auto;
-`
-export const MoreButton = styled.button`
-  width: 100%;
-  border: 0;
-  background: #e66767;
-  color: #fff;
-  font-weight: 800;
-  padding: 8px 12px;
-  cursor: pointer;
 
-  &:hover {
-    opacity: 0.9;
-  }
+  margin-top: auto; 
 `
-

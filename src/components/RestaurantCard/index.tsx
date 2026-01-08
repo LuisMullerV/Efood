@@ -12,25 +12,41 @@ type Props = {
   imagem: string
 }
 
-export default function RestaurantCard({ id, nome, tipo, nota, destaque, descricao, imagem }: Props) {
+function capitalizeFirst(text: string) {
+  if (!text) return text
+  return text.charAt(0).toUpperCase() + text.slice(1)
+}
+
+export default function RestaurantCard({
+  id,
+  nome,
+  tipo,
+  nota,
+  destaque,
+  descricao,
+  imagem
+}: Props) {
   return (
     <S.Card>
       <S.ImageWrapper>
         <S.Image src={imagem} alt={nome} />
         <S.Tags>
-          {destaque && <S.Tag>Destaque da semana</S.Tag>}
-          <S.Tag>{tipo}</S.Tag>
+          {destaque && <S.Tag $variant="highlight">Destaque da semana</S.Tag>}
+          <S.Tag $variant="category">{capitalizeFirst(tipo)}</S.Tag>
         </S.Tags>
+
       </S.ImageWrapper>
+
       <S.Content>
         <S.TopRow>
-          <S.Name>{nome}</S.Name>
+          <S.Name>{capitalizeFirst(nome)}</S.Name>
+
           <S.Rate>
             <span>{nota.toFixed(1)}</span>
-
-              <img src={star} alt="Avaliação" />
+            <img src={star} alt="Avaliação" />
           </S.Rate>
         </S.TopRow>
+
         <S.Description>{descricao}</S.Description>
 
         <S.Button as={Link} to={`/restaurante/${id}`}>

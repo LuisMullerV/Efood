@@ -1,7 +1,6 @@
 import { Link, useLocation } from 'react-router-dom'
 import { useCart } from '../../contexts/useCart'
 import * as S from './styles'
-
 import logo from '../../assets/logo.png'
 
 export default function Header() {
@@ -12,6 +11,9 @@ export default function Header() {
 
   return (
     <S.Wrapper>
+      {/* pattern do fundo */}
+      <S.Pattern />
+
       <S.Inner>
         {/* ESQUERDA */}
         <S.Left>

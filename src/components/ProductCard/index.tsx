@@ -1,7 +1,5 @@
 import * as S from './styles'
 
-
-
 type Props = {
   id: number
   nome: string
@@ -12,7 +10,7 @@ type Props = {
   onOpenDetails?: () => void
 }
 
-const ProductCard = ({
+export default function ProductCard({
   id,
   nome,
   descricao,
@@ -20,8 +18,7 @@ const ProductCard = ({
   preco,
   foto,
   onOpenDetails
-}: Props) => {
-
+}: Props) {
   return (
     <S.Card>
       <S.ImageWrap>
@@ -33,15 +30,11 @@ const ProductCard = ({
         <S.Desc>{descricao}</S.Desc>
 
         <S.Actions>
-
-
-          <S.AddButton type="button" onClick={() => onOpenDetails?.()}>
-            Mais detalhes
+          <S.AddButton type="button" onClick={onOpenDetails}>
+            Adicionar ao carrinho
           </S.AddButton>
         </S.Actions>
       </S.Body>
     </S.Card>
   )
 }
-
-export default ProductCard

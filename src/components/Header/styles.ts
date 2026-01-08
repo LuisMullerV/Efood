@@ -1,69 +1,73 @@
 import styled from 'styled-components'
+import Vector from '../../assets/Vector.png'
 
 export const Wrapper = styled.header`
-  background: #ffebd9;
-  padding: 24px 16px;
+  width: 100%;
+  height: 186px;
+  background-color: #ffebd9;
+  position: relative;
 `
 
 export const Inner = styled.div`
   max-width: 1024px;
   margin: 0 auto;
+  padding: 40px 16px 0;
 
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
+
+  position: relative;  
+  z-index: 1;          
+`
+
+export const Pattern = styled.div`
+  position: absolute;
+  inset: 0;
+  background-image: url(${Vector});
+  background-repeat: repeat;
+  background-size: 72px 72px;
+  background-position: center;
+  opacity: 0.12;              
+  pointer-events: none;
+  z-index: 0;                  
 `
 
 export const Left = styled.div`
-  justify-self: start;
-`
-
-export const Center = styled.div`
-  justify-self: center;
-`
-
-export const Right = styled.div`
-  justify-self: end;
+  text-align: left;
 `
 
 export const LeftText = styled.span`
-  color: #e66767;
-  font-weight: 900;
   font-size: 18px;
+  font-weight: 700;
+  color: #e66767;
 `
 
 export const LeftLink = styled.a`
-  color: #e66767;
-  font-weight: 900;
   font-size: 18px;
+  font-weight: 700;
+  color: #e66767;
   text-decoration: none;
-
-  &:hover {
-    opacity: 0.9;
-  }
 `
 
-export const Logo = styled.a`
-  display: inline-flex;
-  align-items: center;
+export const Center = styled.div`
+  display: flex;
   justify-content: center;
+`
 
-  img {
-    height: 34px; 
-    display: block;
-  }
+export const Logo = styled.div`
+  display: inline-block;
+`
+
+export const Right = styled.div`
+  text-align: right;
 `
 
 export const CartInfo = styled.button`
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-
+  background: none;
+  border: none;
+  font-size: 18px;
+  font-weight: 700;
   color: #e66767;
-  font-weight: 900;
-  font-size: 16px;
-
-  &:hover {
-    opacity: 0.9;
-  }
+  cursor: pointer;
 `

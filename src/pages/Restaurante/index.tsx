@@ -104,8 +104,6 @@ export default function Restaurante() {
 
       {/* LISTA DE PRODUTOS */}
       <S.Container>
-        <S.ProductsTitle>Cardápio</S.ProductsTitle>
-
         <S.ProductsGrid>
           {restaurante.produtos.map((p) => (
             <ProductCard

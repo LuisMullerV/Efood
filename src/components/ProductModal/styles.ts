@@ -21,11 +21,7 @@ export const Modal = styled.div`
 
   background: #e66767;
   border: 2px solid rgba(0, 0, 0, 0.25);
-
-
   overflow: hidden;
-
-
   @media (max-width: 1060px) {
     width: min(1024px, 96vw);
     height: auto;
@@ -69,7 +65,6 @@ export const Content = styled.div`
   }
 `
 
-
 export const Image = styled.img`
   width: 280px;
   height: 280px;
@@ -77,8 +72,6 @@ export const Image = styled.img`
   margin-left: 32px;
   margin-right: 24px;
 `
-
-
 
 export const Info = styled.div`
   padding: 22px 24px;
