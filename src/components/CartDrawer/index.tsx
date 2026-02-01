@@ -5,8 +5,6 @@ import DeliveryStep from './steps/DeliveryStep'
 import PaymentStep from './steps/PaymentStep'
 import ConfirmationStep from './steps/ConfirmationStep'
 import * as S from './styles'
-import fecharIcon from '../../assets/fechar.png'
-
 
 export default function CartDrawer() {
   const { state, closeCart } = useCart()
@@ -23,15 +21,7 @@ export default function CartDrawer() {
 
   return (
     <S.Overlay role="dialog" aria-modal="true" onClick={closeCart}>
-      <S.Panel onClick={e => e.stopPropagation()}>
-        <S.Top>
-          <S.StepPill>{label(state.step)}</S.StepPill>
-          <S.Close type="button" onClick={closeCart} aria-label="Fechar">
-            <img src={fecharIcon} alt="Fechar carrinho" />
-          </S.Close>
-
-        </S.Top>
-
+      <S.Panel onClick={(e) => e.stopPropagation()}>
         {state.step === 'cart' && <CartStep />}
         {state.step === 'delivery' && <DeliveryStep />}
         {state.step === 'payment' && <PaymentStep />}
@@ -39,11 +29,4 @@ export default function CartDrawer() {
       </S.Panel>
     </S.Overlay>
   )
-}
-
-function label(step: string) {
-  if (step === 'cart') return 'Carrinho'
-  if (step === 'delivery') return 'Entrega'
-  if (step === 'payment') return 'Pagamento'
-  return 'Confirmação'
 }

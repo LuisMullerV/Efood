@@ -22,9 +22,14 @@ export const Modal = styled.div`
   background: #e66767;
   border: 2px solid rgba(0, 0, 0, 0.25);
   overflow: hidden;
+
+  padding: 32px;
+  box-sizing: border-box;
+
   @media (max-width: 1060px) {
     width: min(1024px, 96vw);
     height: auto;
+    padding: 24px;
   }
 `
 
@@ -33,8 +38,8 @@ export const Close = styled.button`
   top: 12px;
   right: 12px;
 
-  width: 36px;
-  height: 36px;
+  width: 16px;
+  height: 16px;
   border: 0;
   background: transparent;
   cursor: pointer;
@@ -44,8 +49,8 @@ export const Close = styled.button`
   justify-content: center;
 
   img {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
   }
 
   &:hover {
@@ -56,74 +61,90 @@ export const Close = styled.button`
 export const Content = styled.div`
   display: grid;
 
-  grid-template-columns: 320px 1fr;
+  grid-template-columns: 280px 1fr;
+  column-gap: 24px;
 
+  align-items: start;
   height: 100%;
+  align-items: start; 
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
+    row-gap: 16px;
   }
+`
+
+export const ImageWrap = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
 `
 
 export const Image = styled.img`
   width: 280px;
   height: 280px;
   object-fit: cover;
-  margin-left: 32px;
-  margin-right: 24px;
+  display: block;
+
+  margin: 0;
 `
 
 export const Info = styled.div`
-  padding: 22px 24px;
   color: #fff;
 
+  position: relative;      
+  height: 100%; 
+  min-height: 280px; 
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
+
+  padding-bottom: 80px;
+
+  max-width: 656px;
 `
 
 export const Title = styled.h3`
   margin: 0;
-  font-size: 24px;
-  font-weight: 800;
+
+  font-size: 18px;     
+  font-weight: 900;     
+  line-height: 18px;    
 `
 
 export const Description = styled.p`
-  margin: 16;
-  font-size: 18px;
-  line-height: 1.6;
+  margin: 0;            
+  font-size: 14px;     
+  line-height: 22px;   
+  font-weight: 400;
   opacity: 0.95;
-
-
-  max-width: 620px;
 `
 
 export const Portion = styled.p`
   margin: 0;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 400;
 `
 
 export const AddButton = styled.button`
   width: fit-content;
 
   border: 0;
-  background: #fff;
+  bottom: 25px;
+  background: #ffebd9;
   color: #e66767;
+  position: absolute;
+  left: 0;
 
-  font-weight: 800;
+  font-weight: 700;
   font-size: 14px;
+  line-height: 16px;
 
-  padding: 10px 14px;
+  padding: 4px 6px;
+
   cursor: pointer;
 
   &:hover {
     opacity: 0.9;
   }
-`
-export const ImageWrap = styled.div`
-  padding: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `

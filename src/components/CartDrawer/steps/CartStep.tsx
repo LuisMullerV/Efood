@@ -5,27 +5,36 @@ export default function CartStep() {
   const { state, total, removeItem, goToStep } = useCart()
 
   return (
-    <>
-      <S.Title>Carrinho</S.Title>
+    <S.CartLayout>
+      {state.items.length === 0 ? (
+        <S.Empty>Seu carrinho está vazio.</S.Empty>
+      ) : (
+        <S.ItemsScroll>
+          {state.items.map((item) => (
+            <S.Row key={item.id}>
+              <S.ItemImg src={item.image} alt={item.name} />
 
-      {state.items.length === 0 && <p>Seu carrinho está vazio. (triste, porém elegante)</p>}
+              <S.ItemInfo>
+                <S.ItemName title={item.name}>{item.name}</S.ItemName>
 
-      {state.items.map(item => (
-        <S.Row key={item.id}>
-          <S.ItemImg src={item.image} alt={item.name} />
-          <S.ItemName>
-            {item.name} (x{item.quantity})
-          </S.ItemName>
-          <S.ItemPrice>
-            R$ {(item.price * item.quantity).toFixed(2).replace('.', ',')}
-          </S.ItemPrice>
-          <S.RemoveBtn type="button" onClick={() => removeItem(item.id)}>
-            🗑
-          </S.RemoveBtn>
-        </S.Row>
-      ))}
+                <S.ItemPrice>
+                  R$ {(item.price * item.quantity).toFixed(2).replace('.', ',')}
+                </S.ItemPrice>
+              </S.ItemInfo>
+
+              <S.RemoveBtn
+                type="button"
+                aria-label="Remover item"
+                onClick={() => removeItem(item.id)}
+              />
+            </S.Row>
+          ))}
+        </S.ItemsScroll>
+      )}
 
       <S.Footer>
+        <S.Divider />
+
         <S.Total>
           <span>Valor total</span>
           <span>R$ {total.toFixed(2).replace('.', ',')}</span>
@@ -39,6 +48,6 @@ export default function CartStep() {
           Continuar com a entrega
         </S.ButtonPrimary>
       </S.Footer>
-    </>
+    </S.CartLayout>
   )
 }
