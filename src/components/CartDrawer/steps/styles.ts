@@ -108,8 +108,8 @@ export const RemoveBtn = styled.button`
 `
 
 export const Footer = styled.div`
+  flex-shrink: 0;
   padding: 0 24px 24px;
-  overflow-x: hidden;
 `
 
 export const Divider = styled.div`
