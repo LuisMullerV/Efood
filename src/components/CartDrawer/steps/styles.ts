@@ -152,3 +152,26 @@ export const ButtonPrimary = styled.button`
     cursor: not-allowed;
   }
 `
+
+export const Title = styled.h2``
+
+export const Actions = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`
+
+export const ButtonSecondary = styled.button`
+  background: transparent;
+  border: none;
+`
+
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`
+
+export const Field = styled.input``
+
+export const Label = styled.label``
