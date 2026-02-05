@@ -175,3 +175,18 @@ export const Form = styled.form`
 export const Field = styled.input``
 
 export const Label = styled.label``
+
+export const Input = styled.input`
+  width: 100%;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  padding: 8px;
+  box-sizing: border-box;
+`
+
+export const TwoCols = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+`
