@@ -1,36 +1,20 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Restaurante from './pages/Restaurante'
-import Footer from './components/Footer'
 import CartDrawer from './components/CartDrawer'
-import Header from './components/Header'
-import { GlobalStyle } from './styles/GlobalStyle'
+import Footer from './components/Footer' 
 
-export default function App() {
+function App() {
   return (
     <>
-      <GlobalStyle />
-
       <Routes>
-        {/* HOME sem Header */}
         <Route path="/" element={<Home />} />
-
-        {/* RESTAURANTE com Header */}
-        <Route
-          path="/restaurante/:id"
-          element={
-            <>
-              <Header />
-              <Restaurante />
-            </>
-          }
-        />
-
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="/restaurante/:id" element={<Restaurante />} />
       </Routes>
-
-      <Footer />
-      <CartDrawer />
+      <Footer /> 
+      <CartDrawer /> 
     </>
   )
 }
+
+export default App

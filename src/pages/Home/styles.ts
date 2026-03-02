@@ -1,77 +1,65 @@
 import styled from 'styled-components'
-import Vector from '../../assets/Vector.svg'
+import vector from '../../assets/Vector.png' // Certifica-te que esta imagem existe na pasta assets
 
-export const Page = styled.main`
-  background-color: #fff8f2;
+export const Page = styled.div`
+  background-color: #FFF8F2;
+  min-height: 100vh;
 `
 
-export const Hero = styled.section`
-  position: relative;
-  width: 100%;
+export const Hero = styled.header`
+  background-image: url(${vector});
+  background-size: cover;
+  background-repeat: no-repeat;
   height: 384px;
-  background-color: #ffebd9;
-
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  padding-top: 64px;
-  box-sizing: border-box;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-
-    background-image: url(${Vector});
-    background-repeat: repeat;
-
-    background-size: 64px 64px;
-
-    background-position: 0 -24px;
-
-    opacity: 1;
-    filter: opacity(0.12);
-
-    pointer-events: none;
-  }
-
-  > * {
-    position: relative;
-    z-index: 1;
+  justify-content: space-between;
+  padding: 40px 0;
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: space-between;
   }
 `
 
 export const Logo = styled.img`
   width: 125px;
-  height: 57.5px;
-
-  margin: 0 0 156px;
 `
 
-export const HeroTitle = styled.h2`
-  max-width: 540px;
-  margin: 0;
-  text-align: center;
-
+export const HeroTitle = styled.h1`
   font-size: 36px;
+  font-weight: 900;
   line-height: 42px;
-  font-weight: 800;
-  color: #e66767;
+  text-align: center;
+  color: #E66767;
+  max-width: 540px;
 `
 
-export const Container = styled.div`
+export const Container = styled.section`
   max-width: 1024px;
+  width: 100%;
   margin: 0 auto;
-  padding: 80px 16px;
+  padding-top: 80px;
+  padding-bottom: 120px;
+
+  @media (max-width: 1024px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 `
 
 export const Grid = styled.div`
   display: grid;
-  grid-template-columns: 472px 472px;
-
+  grid-template-columns: 1fr 1fr;
   column-gap: 80px;
   row-gap: 48px;
 
-  justify-content: center;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `

@@ -3,148 +3,122 @@ import trashIcon from '../../../assets/lixeira.png'
 
 export const CartLayout = styled.div`
   height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
-
-  overflow-x: hidden;
+  max-width: 100%;
 `
 
 export const ItemsScroll = styled.div`
-  padding: 32px 24px 0;
-
   display: flex;
   flex-direction: column;
+  padding: 8px 8px 0 8px;
   gap: 16px;
-
-  overflow-y: auto;
+  max-width: 100%;
   overflow-x: hidden;
 `
 
 export const Empty = styled.p`
-  padding: 32px 24px 0;
-  color: #ffffff;
+  color: #FFEBD9;
   font-weight: 700;
+  text-align: center;
+  margin-top: 32px;
 `
 
+/* --- ALINHAMENTO IDÊNTICO AO FIGMA --- */
 export const Row = styled.div`
-  width: 344px;
+  width: 100%;
+  max-width: 344px;
   height: 100px;
-  background: #ffebd9;
-  border-radius: 0%;
-
+  min-height: 100px;
+  background-color: #FFEBD9;
   display: flex;
   align-items: center;
-  gap: 12px;
-
-  padding: 10px 14px;
-  box-sizing: border-box;
+  padding: 8px;
   position: relative;
-  overflow: hidden;
+  box-sizing: border-box;
+  border-radius: 0;
+
+  > button {
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    background-image: url(${trashIcon});
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    filter: opacity(0.6);
+  }
 `
 
 export const ItemImg = styled.img`
   width: 80px;
   height: 80px;
+  min-width: 80px;
+  min-height: 80px;
   object-fit: cover;
   border-radius: 8px;
-  flex: 0 0 auto;
+  margin-right: 8px;
+  flex-shrink: 0;
 `
 
 export const ItemInfo = styled.div`
-  flex: 1;
-  min-width: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 16px;
-
-  padding-right: 24px;
+  /* Sem 'justify-content: center' para não empurrar o texto pro meio */
 `
 
 export const ItemName = styled.h3`
-  margin: 0;
   font-family: Roboto, sans-serif;
   font-weight: 900;
   font-size: 18px;
-  line-height: 21px;
-  color: #e66767;
-  letter-spacing: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  color: #E66767;
+  margin: 0 0 16px 0;
 `
 
-export const ItemPrice = styled.p`
-  margin: 0;
+export const ItemPrice = styled.span`
   font-family: Roboto, sans-serif;
   font-weight: 400;
   font-size: 14px;
-  line-height: 100%;
-  color: #e66767;
+  color: #E66767;
+  margin: 0;
 `
-
-export const RemoveBtn = styled.button`
-  width: 16px;
-  height: 16px;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-
-  position: absolute;
-  right: 8px;
-  bottom: 8px;
-
-  background-image: url(${trashIcon});
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 16px 16px;
-
-  opacity: 0.9;
-
-  &:hover {
-    opacity: 1;
-  }
-`
+/* ------------------------------------ */
 
 export const Footer = styled.div`
-  flex-shrink: 0;
-  padding: 0 24px 24px;
+  padding: 16px 8px 24px 8px;
+  margin-top: 16px;
 `
 
 export const Divider = styled.div`
-  height: 1px;
-  background: rgba(0, 0, 0, 0.2);
-
-  margin: 24px 0 20px;
-`
-
-export const Total = styled.div`
-  width: 344px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  color: #ffffff;
-  font-family: Roboto, sans-serif;
-  font-weight: 700;
-  font-size: 18px;
+  margin-bottom: 16px;
+  
+  span {
+    color: #FFEBD9;
+    font-weight: 700;
+    font-size: 14px;
+  }
 `
 
 export const ButtonPrimary = styled.button`
-  width: 344px;
+  width: 100%;
   height: 32px;
-  margin-top: 12px;
-
   border: 0;
-  border-radius: 8px;
-  background: #ffebd9;
-
+  background: #FFEBD9;
   font-family: Roboto, sans-serif;
   font-weight: 700;
   font-size: 14px;
-  color: #e66767;
-
+  color: #E66767;
   cursor: pointer;
 
   &:disabled {
@@ -153,40 +127,95 @@ export const ButtonPrimary = styled.button`
   }
 `
 
-export const Title = styled.h2``
+export const Title = styled.h3`
+  font-size: 16px;
+  font-weight: 700;
+  color: #FFEBD9;
+  margin-bottom: 16px;
+`
+
+export const InputGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+  min-width: 0;
+  max-width: 100%;
+
+  label {
+    font-size: 14px;
+    font-weight: 700;
+    color: #FFEBD9;
+    margin-bottom: 8px;
+  }
+
+  input, span {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  span {
+    display: block;
+    overflow: hidden;
+  }
+
+  input {
+    background-color: #FFEBD9;
+    border: 1px solid #FFEBD9;
+    height: 32px;
+    padding: 0 8px;
+    font-weight: 700;
+    font-size: 14px;
+    width: 100%;
+    color: #4B2995;
+
+    &.error {
+      border: 2px solid red;
+    }
+  }
+`
+
+export const InputGroupRow = styled.div`
+  display: flex;
+  column-gap: 16px;
+  width: 100%;
+  min-width: 0;
+  
+  .auto-width {
+    flex: 1;
+    min-width: 0;
+  }
+
+  input {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+`
+
+export const Button = styled(ButtonPrimary)``
+
+export const ButtonSecondary = styled(ButtonPrimary)`
+  background-color: #FFEBD9;
+  color: #E66767;
+`
 
 export const Actions = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  margin-top: 24px;
 `
 
-export const ButtonSecondary = styled.button`
-  background: transparent;
-  border: none;
-`
-
-export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-`
-
-export const Field = styled.input``
-
-export const Label = styled.label``
-
-export const Input = styled.input`
+export const FormWrapper = styled.div`
   width: 100%;
-  height: 32px;
-  border-radius: 8px;
-  border: none;
-  padding: 8px;
+  max-width: 100%;
+  overflow-x: hidden;
   box-sizing: border-box;
-`
 
-export const TwoCols = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  form {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+
+  input {
+    max-width: 100%;
+  }
 `

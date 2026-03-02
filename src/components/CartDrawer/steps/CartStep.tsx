@@ -1,53 +1,48 @@
-import { useCart } from '../../../contexts/useCart'
+import { useDispatch, useSelector } from 'react-redux'
+import { remove, nextStep } from '../../../store/cartSlice'
+import { RootState } from '../../../store'
 import * as S from './styles'
 
 export default function CartStep() {
-  const { state, total, removeItem, goToStep } = useCart()
+  const dispatch = useDispatch()
+  const { items } = useSelector((state: RootState) => state.cart)
+
+  const total = items.reduce((acc, item) => acc + (item.price || 0), 0)
+
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    }).format(price)
+  }
 
   return (
     <S.CartLayout>
-      {state.items.length === 0 ? (
+      {items.length === 0 ? (
         <S.Empty>Seu carrinho está vazio.</S.Empty>
       ) : (
         <S.ItemsScroll>
-          {state.items.map((item) => (
+          {items.map((item) => (
             <S.Row key={item.id}>
-              <S.ItemImg src={item.image} alt={item.name} />
-
+              <S.ItemImg src={item.foto} alt={item.nome} />
               <S.ItemInfo>
-                <S.ItemName title={item.name}>{item.name}</S.ItemName>
-
-                <S.ItemPrice>
-                  R$ {(item.price * item.quantity).toFixed(2).replace('.', ',')}
-                </S.ItemPrice>
+                <S.ItemName>{item.nome}</S.ItemName>
+                <S.ItemPrice>{formatPrice(item.price)}</S.ItemPrice>
               </S.ItemInfo>
-
-              <S.RemoveBtn
-                type="button"
-                aria-label="Remover item"
-                onClick={() => removeItem(item.id)}
-              />
+              <button type="button" onClick={() => dispatch(remove(item.id))} />
             </S.Row>
           ))}
+          <S.Footer>
+            <S.Divider>
+              <span>Valor total</span>
+              <span>{formatPrice(total)}</span>
+            </S.Divider>
+            <S.ButtonSecondary onClick={() => dispatch(nextStep())}>
+              Continuar com a entrega
+            </S.ButtonSecondary>
+          </S.Footer>
         </S.ItemsScroll>
       )}
-
-      <S.Footer>
-        <S.Divider />
-
-        <S.Total>
-          <span>Valor total</span>
-          <span>R$ {total.toFixed(2).replace('.', ',')}</span>
-        </S.Total>
-
-        <S.ButtonPrimary
-          type="button"
-          onClick={() => goToStep('delivery')}
-          disabled={state.items.length === 0}
-        >
-          Continuar com a entrega
-        </S.ButtonPrimary>
-      </S.Footer>
     </S.CartLayout>
   )
 }

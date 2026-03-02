@@ -1,83 +1,43 @@
 import styled from 'styled-components'
 
 export const Card = styled.div`
-  background: #e66767;
-  border: 2px solid #e66767;
+  background-color: #E66767;
+  color: #FFEBD9;
+  padding: 8px;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-`
+  gap: 8px;
+  height: 100%;
 
-export const ImageWrap = styled.div`
-  padding: 8px;
-`
-
-export const Img = styled.img`
-  width: 100%;
-  height: 167px;
-  object-fit: cover;
-  display: block;
-`
-
-export const Body = styled.div`
-  padding: 8px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+  img {
+    width: 100%;
+    height: 167px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
 `
 
 export const Title = styled.h3`
-  margin: 0;
-  font-family: Roboto, sans-serif;
   font-weight: 900;
   font-size: 16px;
-  line-height: 100%;
-  color: #ffebd9;
-
-  text-transform: capitalize;
 `
 
-export const Desc = styled.p`
-  margin: 8px 0 0;
-  font-family: Roboto, sans-serif;
-  font-weight: 400;
+export const Description = styled.p`
   font-size: 14px;
   line-height: 22px;
-  color: #ffebd9;
-
-  height: 88px;           
-  overflow: hidden;
-
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-`
-
-export const Actions = styled.div`
-  margin-top: auto;
-  padding-top: 8px;
+  display: block;
+  margin-top: 8px;
 `
 
 export const AddButton = styled.button`
+  background-color: #FFEBD9;
+  color: #E66767;
+  border: none;
   width: 100%;
-  height: 24px;
-
-  border: 0;
-  background: #ffebd9;
-  color: #e66767;
-
-  font-family: Roboto, sans-serif;
+  padding: 4px;
   font-weight: 700;
   font-size: 14px;
-  line-height: 12px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   cursor: pointer;
-
-  &:hover {
-    opacity: 0.9;
-  }
+  margin-top: auto; /* Empurra o botão para o final do card */
 `

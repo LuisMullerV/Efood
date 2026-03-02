@@ -1,40 +1,45 @@
-import * as S from './styles'
+import { useDispatch } from 'react-redux'
+import { add, open } from '../../store/cartSlice'
+import { Card, Title, Description, AddButton } from './styles'
 
 type Props = {
-  id: number
-  nome: string
-  descricao: string
-  serve: string
-  preco: number
-  foto: string
-  onOpenDetails?: () => void
+  produto: any
+  restaurante?: any
 }
 
-export default function ProductCard({
-  id,
-  nome,
-  descricao,
-  serve,
-  preco,
-  foto,
-  onOpenDetails
-}: Props) {
+const ProductCard = ({ produto }: Props) => {
+  const dispatch = useDispatch()
+
+  const addToCart = () => {
+    dispatch(add({
+      id: produto.id,
+      nome: produto.nome,
+      price: produto.preco, // Mapeando 'preco' da API para 'price' do Redux
+      foto: produto.foto,
+      porcao: produto.porcao
+    }))
+    dispatch(open())
+  }
+
+  const getDescricao = (desc: string) => {
+    if (desc.length > 130) {
+        return desc.slice(0, 130) + '...'
+    }
+    return desc
+  }
+
   return (
-    <S.Card>
-      <S.ImageWrap>
-        <S.Img src={foto} alt={nome} />
-      </S.ImageWrap>
-
-      <S.Body>
-        <S.Title>{nome}</S.Title>
-        <S.Desc>{descricao}</S.Desc>
-
-        <S.Actions>
-          <S.AddButton type="button" onClick={onOpenDetails}>
-            Adicionar ao carrinho
-          </S.AddButton>
-        </S.Actions>
-      </S.Body>
-    </S.Card>
+    <Card>
+      <img src={produto.foto} alt={produto.nome} />
+      <div>
+        <Title>{produto.nome}</Title>
+        <Description>{getDescricao(produto.descricao)}</Description>
+        <AddButton onClick={addToCart}>
+          Adicionar ao carrinho
+        </AddButton>
+      </div>
+    </Card>
   )
 }
+
+export default ProductCard

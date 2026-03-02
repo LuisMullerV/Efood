@@ -2,13 +2,13 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export type CartItem = {
   id: number
-  name: string
   price: number
-  image: string
-  qty: number
+  nome: string
+  foto: string
+  porcao: string
 }
 
-export type DeliveryData = {
+type DeliveryState = {
   receiver: string
   address: string
   city: string
@@ -17,119 +17,78 @@ export type DeliveryData = {
   complement?: string
 }
 
-export type PaymentData = {
-  cardName: string
-  cardNumber: string
-  cvv: string
-  expMonth: string
-  expYear: string
-}
-
-export type CartStep = 'cart' | 'delivery' | 'payment' | 'confirmation'
-
 type CartState = {
   items: CartItem[]
   isOpen: boolean
-  step: CartStep
-  delivery: DeliveryData
-  payment: PaymentData
-  orderId?: string
+  delivery: DeliveryState | null
+  currentStep: 'cart' | 'delivery' | 'payment' | 'confirmation'
 }
 
 const initialState: CartState = {
   items: [],
   isOpen: false,
-  step: 'cart',
-  delivery: {
-    receiver: '',
-    address: '',
-    city: '',
-    cep: '',
-    number: '',
-    complement: ''
-  },
-  payment: {
-    cardName: '',
-    cardNumber: '',
-    cvv: '',
-    expMonth: '',
-    expYear: ''
-  },
-  orderId: undefined
-}
-
-type AddPayload = Omit<CartItem, 'qty'> & { qty?: number }
-
-function findIndex(items: CartItem[], id: number) {
-  return items.findIndex((i) => i.id === id)
+  delivery: null,
+  currentStep: 'cart'
 }
 
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    openCart(state) {
+    add: (state, action: PayloadAction<CartItem>) => {
+      const foundItem = state.items.find((item) => item.id === action.payload.id)
+      if (!foundItem) {
+        state.items.push(action.payload)
+      }
       state.isOpen = true
     },
-    closeCart(state) {
+    remove: (state, action: PayloadAction<number>) => {
+      state.items = state.items.filter((item) => item.id !== action.payload)
+    },
+    open: (state) => {
+      state.isOpen = true
+    },
+    close: (state) => {
       state.isOpen = false
     },
-    toggleCart(state) {
-      state.isOpen = !state.isOpen
-    },
-
-    setStep(state, action: PayloadAction<CartStep>) {
-      state.step = action.payload
-    },
-    resetFlow(state) {
-      state.step = 'cart'
-      state.orderId = undefined
-    },
-
-    addItem(state, action: PayloadAction<AddPayload>) {
-      const qtyToAdd = action.payload.qty ?? 1
-      const idx = findIndex(state.items, action.payload.id)
-
-      if (idx >= 0) {
-        state.items[idx].qty += qtyToAdd
-      } else {
-        state.items.push({
-          ...action.payload,
-          qty: qtyToAdd
-        })
-      }
-    },
-    removeItem(state, action: PayloadAction<number>) {
-      state.items = state.items.filter((i) => i.id !== action.payload)
-    },
-    clearCart(state) {
-      state.items = []
-    },
-
-    setDelivery(state, action: PayloadAction<DeliveryData>) {
+    addDeliveryDetails: (state, action: PayloadAction<DeliveryState>) => {
       state.delivery = action.payload
     },
-    setPayment(state, action: PayloadAction<PaymentData>) {
-      state.payment = action.payload
+    nextStep: (state) => {
+      if (state.currentStep === 'cart') state.currentStep = 'delivery'
+      else if (state.currentStep === 'delivery') state.currentStep = 'payment'
+      else if (state.currentStep === 'payment') state.currentStep = 'confirmation'
     },
-    setOrderId(state, action: PayloadAction<string>) {
-      state.orderId = action.payload
+    prevStep: (state) => {
+      if (state.currentStep === 'payment') state.currentStep = 'delivery'
+      else if (state.currentStep === 'delivery') state.currentStep = 'cart'
+    },
+    goToCart: (state) => {
+      state.currentStep = 'cart'
+    },
+    clearCart: (state) => {
+      state.items = []
+      state.delivery = null
+      state.currentStep = 'confirmation'
+    },
+    resetCheckout: (state) => {
+      state.currentStep = 'cart'
+      state.isOpen = false
     }
   }
 })
 
-export const {
-  openCart,
-  closeCart,
-  toggleCart,
-  setStep,
-  resetFlow,
-  addItem,
-  removeItem,
-  clearCart,
-  setDelivery,
-  setPayment,
-  setOrderId
+export const { 
+  add, 
+  remove, 
+  open, 
+  close, 
+  addDeliveryDetails, 
+  nextStep, 
+  prevStep, 
+  goToCart, 
+  clearCart, 
+  resetCheckout 
 } = cartSlice.actions
 
 export default cartSlice.reducer

@@ -1,37 +1,36 @@
-import { useCart } from '../../../contexts/useCart'
+import { useDispatch } from 'react-redux'
+import { resetCheckout } from '../../../store/cartSlice'
 import * as S from './styles'
 
 export default function ConfirmationStep() {
-  const { state, clearCart, closeCart } = useCart()
+  const dispatch = useDispatch()
+
+  const handleFinish = () => {
+    dispatch(resetCheckout())
+  }
 
   return (
     <>
-      <S.Title>Pedido confirmado 🎉</S.Title>
-      <p>
-        Seu pedido foi recebido. Código do pedido: <strong>{state.orderId}</strong>
-      </p>
-      <p>Agora é só esperar. (E não esquecer onde você mora… o formulário já cuidou disso.)</p>
-
-      <S.Actions>
-        <S.ButtonSecondary
-          type="button"
-          onClick={() => {
-            clearCart()
-            closeCart()
-          }}
-        >
-          Fechar
-        </S.ButtonSecondary>
-        <S.ButtonPrimary
-          type="button"
-          onClick={() => {
-            clearCart()
-            closeCart()
-          }}
-        >
-          Novo pedido
-        </S.ButtonPrimary>
-      </S.Actions>
+      <S.Title>Pedido confirmado!</S.Title>
+      <S.InputGroup>
+        <p style={{ color: '#FFEBD9', fontSize: '14px', lineHeight: '22px' }}>
+          Estamos felizes em informar que seu pedido já está em processo de preparação e, em breve, será entregue no endereço fornecido.
+        </p>
+        <br />
+        <p style={{ color: '#FFEBD9', fontSize: '14px', lineHeight: '22px' }}>
+          Gostaríamos de ressaltar que nossos entregadores não estão autorizados a realizar cobranças extras. 
+        </p>
+        <br />
+        <p style={{ color: '#FFEBD9', fontSize: '14px', lineHeight: '22px' }}>
+          Lembre-se da importância de higienizar as mãos após o recebimento do pedido, garantindo assim sua segurança e bem-estar durante a refeição.
+        </p>
+        <br />
+        <p style={{ color: '#FFEBD9', fontSize: '14px', lineHeight: '22px' }}>
+          Esperamos que desfrute de uma deliciosa e agradável experiência gastronômica. Bom apetite!
+        </p>
+      </S.InputGroup>
+      
+      <S.ButtonPrimary onClick={handleFinish}>Concluir</S.ButtonPrimary>
     </>
   )
 }

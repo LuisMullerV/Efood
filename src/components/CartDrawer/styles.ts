@@ -2,37 +2,32 @@ import styled from 'styled-components'
 
 export const Overlay = styled.div`
   position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-
-  display: flex;
-  justify-content: flex-end;
-
-  z-index: 50;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+  overflow: hidden;
 `
 
 export const Panel = styled.aside`
-  width: min(400px, 100vw);
-  height: 100%;
-  background: #e66767;
-
   display: flex;
   flex-direction: column;
-
-  padding: 0; 
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 360px;
+  height: 100%;
+  background-color: #E66767;
+  z-index: 1;
+  padding: 32px 8px;
+  overflow-x: hidden;
+  overflow-y: auto;
   box-sizing: border-box;
-
-  overflow: hidden; 
 `
 
-export const Top = styled.div`
-  display: none; 
-`
-
-export const StepPill = styled.div`
-  display: none;
-`
-
-export const Close = styled.button`
-  display: none;
+export const Title = styled.h2`
+  color: #FFEBD9;
+  margin-bottom: 16px;
 `

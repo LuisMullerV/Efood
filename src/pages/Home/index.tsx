@@ -1,54 +1,38 @@
+import Header from '../../components/Header'
 import RestaurantCard from '../../components/RestaurantCard'
-import { useEffect, useState } from 'react'
-import { getRestaurantes } from '../../services/api'
+import { useGetRestaurantesQuery } from '../../services/api'
 import * as S from './styles'
-import logo from '../../assets/logo.png'
 
-export default function Home() {
-  const [restaurantes, setRestaurantes] = useState<any[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState('')
+const Home = () => {
+  const { data: restaurantes, isLoading } = useGetRestaurantesQuery()
 
-  useEffect(() => {
-    let isMounted = true
-
-    getRestaurantes()
-      .then((data) => {
-        if (isMounted) setRestaurantes(Array.isArray(data) ? data : [])
-      })
-      .catch(() => {
-        if (isMounted) setError('Não foi possível carregar os restaurantes.')
-      })
-      .finally(() => {
-        if (isMounted) setLoading(false)
-      })
-
-    return () => {
-      isMounted = false
-    }
-  }, [])
+  if (isLoading) {
+    return <p style={{ textAlign: 'center', marginTop: '40px' }}>Carregando restaurantes...</p>
+  }
 
   return (
     <S.Page>
-      <S.Hero>
-        <S.Logo src={logo} alt="efood" />
-        <S.HeroTitle>
-          Viva experiências gastronômicas no conforto da sua casa
-        </S.HeroTitle>
-      </S.Hero>
-
+      {/* O Header completo que criamos agora é chamado aqui */}
+      <Header />
+      
       <S.Container>
-        {loading && <p>Carregando...</p>}
-        {!loading && error && <p>{error}</p>}
-
-        {!loading && !error && (
-          <S.Grid>
-            {restaurantes.map((r) => (
-              <RestaurantCard key={r.id} {...r} />
-            ))}
-          </S.Grid>
-        )}
+        <S.Grid>
+          {restaurantes?.map((r: any) => (
+            <RestaurantCard
+              key={r.id}
+              id={r.id}
+              titulo={r.titulo}
+              destacado={r.destacado}
+              tipo={r.tipo}
+              nota={r.avaliacao}
+              descricao={r.descricao}
+              capa={r.capa}
+            />
+          ))}
+        </S.Grid>
       </S.Container>
     </S.Page>
   )
 }
+
+export default Home

@@ -1,143 +1,42 @@
-import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
-import ProductCard from '../../components/ProductCard'
-import ProductModal from '../../components/ProductModal'
-import { getRestauranteById } from '../../services/api'
-import { useCart } from '../../contexts/useCart'
-import * as S from './styles'
+import { useParams } from 'react-router-dom'
 
-type Produto = {
-  id: number
-  nome: string
-  descricao: string
-  serve: string
-  preco: number
-  foto: string
+import Header from '../../components/Header' 
+import Hero from '../../components/Hero'
+import ProductList from '../../components/ProductList'
+
+import { useGetRestauranteQuery } from '../../services/api'
+
+type RestauranteParams = {
+  id: string
 }
 
-type RestauranteType = {
-  id: number
-  nome: string
-  tipo: string
-  imagem: string
-  produtos: Produto[]
-}
+const Restaurante = () => {
+  const { id } = useParams() as RestauranteParams
+  const { data: restaurante, isLoading } = useGetRestauranteQuery(id)
 
-export default function Restaurante() {
-  const navigate = useNavigate()
-  const params = useParams()
-  const id = Number(params.id)
-
-  const [restaurante, setRestaurante] = useState<RestauranteType | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState('')
-
-  const [selectedProduct, setSelectedProduct] = useState<Produto | null>(null)
-  const [isModalOpen, setIsModalOpen] = useState(false)
-
-  const { addItem, openCart } = useCart()
-
-  useEffect(() => {
-    let isMounted = true
-    setLoading(true)
-    setError('')
-
-    getRestauranteById(id)
-      .then((data) => {
-        if (!isMounted) return
-        setRestaurante((data as RestauranteType) ?? null)
-        if (!data) setError('Restaurante não encontrado.')
-      })
-      .catch(() => {
-        if (isMounted) setError('Não foi possível carregar o restaurante.')
-      })
-      .finally(() => {
-        if (isMounted) setLoading(false)
-      })
-
-    return () => {
-      isMounted = false
-    }
-  }, [id])
-
-  function openDetails(product: Produto) {
-    setSelectedProduct(product)
-    setIsModalOpen(true)
+  if (isLoading) {
+    return <h3 className="container">Carregando...</h3>
   }
 
-  function closeDetails() {
-    setIsModalOpen(false)
-    setSelectedProduct(null)
-  }
-
-  if (loading) {
-    return (
-      <S.Container>
-        <p>Carregando...</p>
-      </S.Container>
-    )
-  }
-
-  if (!restaurante || error) {
-    return (
-      <S.Container>
-        <p>{error || 'Restaurante não encontrado.'}</p>
-        <button onClick={() => navigate('/')}>Voltar</button>
-      </S.Container>
-    )
+  if (!restaurante) {
+    return <h3 className="container">Restaurante não encontrado</h3>
   }
 
   return (
     <>
-      {/* BANNER */}
-      <S.Banner style={{ backgroundImage: `url(${restaurante.imagem})` }}>
-        <S.BannerOverlay>
-          <S.BannerContent>
-            <S.Small>{restaurante.tipo}</S.Small>
-          </S.BannerContent>
-
-          <S.BannerContent>
-            <S.Title>{restaurante.nome}</S.Title>
-          </S.BannerContent>
-        </S.BannerOverlay>
-      </S.Banner>
-
-      {/* LISTA DE PRODUTOS */}
-      <S.Container>
-        <S.ProductsGrid>
-          {restaurante.produtos.map((p) => (
-            <ProductCard
-              key={p.id}
-              id={p.id}
-              nome={p.nome}
-              descricao={p.descricao}
-              serve={p.serve}
-              preco={p.preco}
-              foto={p.foto}
-              onOpenDetails={() => openDetails(p)}
-            />
-          ))}
-        </S.ProductsGrid>
-      </S.Container>
-
-      {/* MODAL DE MAIS DETALHES */}
-      <ProductModal
-        isOpen={isModalOpen}
-        onClose={closeDetails}
-        product={selectedProduct}
-        onAdd={() => {
-          if (!selectedProduct) return
-
-          addItem({
-            id: selectedProduct.id,
-            name: selectedProduct.nome,
-            price: selectedProduct.preco,
-            image: selectedProduct.foto
-          })
-          closeDetails()
-          openCart()
-        }}
+      <Header />
+      <Hero 
+        capa={restaurante.capa} 
+        tipo={restaurante.tipo} 
+        titulo={restaurante.titulo} 
+      />
+      
+      <ProductList 
+        produtos={restaurante.cardapio} 
+        restaurante={restaurante}
       />
     </>
   )
 }
+
+export default Restaurante

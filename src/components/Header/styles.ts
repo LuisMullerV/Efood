@@ -1,73 +1,65 @@
 import styled from 'styled-components'
-import Vector from '../../assets/Vector.png'
 
-export const Wrapper = styled.header`
-  width: 100%;
-  height: 186px;
-  background-color: #ffebd9;
-  position: relative;
+export const HeaderBar = styled.header`
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 0;
+  height: 384px; /* Altura do banner gigante da Home */
 `
 
-export const Inner = styled.div`
+export const Container = styled.div`
   max-width: 1024px;
-  margin: 0 auto;
-  padding: 40px 16px 0;
-
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 
-  position: relative;  
-  z-index: 1;          
+  @media (max-width: 1024px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* Se for a Home, a logo fica sozinha no centro do flexbox */
+  &.home {
+    justify-content: center;
+  }
 `
 
-export const Pattern = styled.div`
-  position: absolute;
-  inset: 0;
-  background-image: url(${Vector});
-  background-repeat: repeat;
-  background-size: 72px 72px;
-  background-position: center;
-  opacity: 0.12;              
-  pointer-events: none;
-  z-index: 0;                  
+export const Logo = styled.img`
+  width: 125px;
 `
 
-export const Left = styled.div`
-  text-align: left;
+export const Title = styled.h1`
+  font-size: 36px;
+  font-weight: 900;
+  line-height: 42px;
+  text-align: center;
+  color: #E66767;
+  max-width: 540px;
+  margin-top: 130px;
+
+  @media (max-width: 768px) {
+    font-size: 28px;
+    margin-top: 80px;
+  }
 `
 
-export const LeftText = styled.span`
+export const Links = styled.div`
+  a {
+    font-size: 18px;
+    font-weight: 900;
+    color: #E66767;
+    text-decoration: none;
+  }
+`
+
+export const CartButton = styled.a`
   font-size: 18px;
-  font-weight: 700;
-  color: #e66767;
-`
-
-export const LeftLink = styled.a`
-  font-size: 18px;
-  font-weight: 700;
-  color: #e66767;
-  text-decoration: none;
-`
-
-export const Center = styled.div`
-  display: flex;
-  justify-content: center;
-`
-
-export const Logo = styled.div`
-  display: inline-block;
-`
-
-export const Right = styled.div`
-  text-align: right;
-`
-
-export const CartInfo = styled.button`
-  background: none;
-  border: none;
-  font-size: 18px;
-  font-weight: 700;
-  color: #e66767;
+  font-weight: 900;
+  color: #E66767;
   cursor: pointer;
+  text-decoration: none;
 `

@@ -1,26 +1,22 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export const Card = styled.div`
-  border: 1px solid #e66767;
-  background: #ffffff;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  height: 100%;
-`
-
-export const ImageWrapper = styled.div`
+  background-color: #ffffff;
+  border: 1px solid #E66767;
   position: relative;
+  text-decoration: none;
+  display: block;
 `
 
-export const Image = styled.img`
+export const CardImage = styled.img`
   width: 100%;
   height: 217px;
   object-fit: cover;
   display: block;
 `
 
-export const Tags = styled.div`
+export const TagsContainer = styled.div`
   position: absolute;
   top: 16px;
   right: 16px;
@@ -28,88 +24,64 @@ export const Tags = styled.div`
   gap: 8px;
 `
 
-export const Tag = styled.span<{ $variant?: 'highlight' | 'category' }>`
-  display: inline-block;
-  padding: 4px 6px;
-  background: #e66767;
-  color: #fff;
+export const Tag = styled.div`
+  background-color: #E66767;
+  color: #FFEBD9;
   font-size: 12px;
-
-  font-weight: ${(props) => (props.$variant === 'highlight' ? 600 : 400)};
+  font-weight: 700;
+  padding: 6px 10px;
+  display: inline-block;
 `
 
 export const Content = styled.div`
   padding: 8px;
-  display: flex;
-  flex-direction: column;
-  flex: 1; 
 `
 
-export const TopRow = styled.div`
+export const Header = styled.div`
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
 `
 
-export const Name = styled.h3`
-  margin: 0;
-  font-family: Roboto, sans-serif;
+export const Title = styled.h3`
   font-size: 18px;
   font-weight: 700;
-  color: #e66767;
+  color: #E66767;
+  margin: 0;
 `
 
-export const Rate = styled.span`
+export const RatingContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
 
-  font-family: Roboto, sans-serif;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 100%;
-  color: #e66767;
+  span {
+    font-size: 18px;
+    font-weight: 700;
+    color: #E66767;
+  }
 
   img {
     width: 21px;
-    height: 20px;
-    display: block;
+    height: 21px;
   }
 `
 
 export const Description = styled.p`
-  margin: 8px 0 16px;
-  font-family: Roboto, sans-serif;
   font-size: 14px;
-  font-weight: 400;
   line-height: 22px;
-  color: #e66767;
-
-  height: 88px;
-  overflow: hidden;
-
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
+  color: #E66767;
+  margin-bottom: 16px;
+  display: block;
 `
 
-export const Button = styled.a`
-  width: 82px;
-  height: 24px;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  background: #e66767;
-  color: #ffebd9;
-  text-decoration: none;
-
-  font-family: Roboto, sans-serif;
+export const ButtonLink = styled(Link)`
+  background-color: #E66767;
+  color: #FFEBD9;
   font-size: 14px;
   font-weight: 700;
-  line-height: 12px;
-
-  margin-top: auto; 
+  text-decoration: none;
+  padding: 4px 6px;
+  display: inline-block;
 `

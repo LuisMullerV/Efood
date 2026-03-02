@@ -1,5 +1,7 @@
-import { useEffect } from 'react'
-import { useCart } from '../../contexts/useCart'
+import { useDispatch, useSelector } from 'react-redux'
+import { close } from '../../store/cartSlice'
+import { RootState } from '../../store'
+
 import CartStep from './steps/CartStep'
 import DeliveryStep from './steps/DeliveryStep'
 import PaymentStep from './steps/PaymentStep'
@@ -7,25 +9,23 @@ import ConfirmationStep from './steps/ConfirmationStep'
 import * as S from './styles'
 
 export default function CartDrawer() {
-  const { state, closeCart } = useCart()
+  const dispatch = useDispatch()
+  const { isOpen, currentStep } = useSelector((state: RootState) => state.cart)
 
-  useEffect(() => {
-    function onKey(e: KeyboardEvent) {
-      if (e.key === 'Escape') closeCart()
-    }
-    if (state.isOpen) window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [state.isOpen, closeCart])
+  const closeCart = () => {
+    dispatch(close())
+  }
 
-  if (!state.isOpen) return null
+  // Se o carrinho estiver fechado, não renderiza nada (evita processamento desnecessário)
+  if (!isOpen) return null
 
   return (
-    <S.Overlay role="dialog" aria-modal="true" onClick={closeCart}>
-      <S.Panel onClick={(e) => e.stopPropagation()}>
-        {state.step === 'cart' && <CartStep />}
-        {state.step === 'delivery' && <DeliveryStep />}
-        {state.step === 'payment' && <PaymentStep />}
-        {state.step === 'confirmation' && <ConfirmationStep />}
+    <S.Overlay onClick={closeCart}>
+      <S.Panel onClick={(e: React.MouseEvent) => e.stopPropagation()}>
+        {currentStep === 'cart' && <CartStep />}
+        {currentStep === 'delivery' && <DeliveryStep />}
+        {currentStep === 'payment' && <PaymentStep />}
+        {currentStep === 'confirmation' && <ConfirmationStep />}
       </S.Panel>
     </S.Overlay>
   )
