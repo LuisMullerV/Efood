@@ -1,26 +1,13 @@
-import { useDispatch } from 'react-redux'
-import { add, open } from '../../store/cartSlice'
 import { Card, Title, Description, AddButton } from './styles'
 
 type Props = {
   produto: any
   restaurante?: any
+  onOpenModal: () => void 
 }
 
-const ProductCard = ({ produto }: Props) => {
-  const dispatch = useDispatch()
-
-  const addToCart = () => {
-    dispatch(add({
-      id: produto.id,
-      nome: produto.nome,
-      price: produto.preco, // Mapeando 'preco' da API para 'price' do Redux
-      foto: produto.foto,
-      porcao: produto.porcao
-    }))
-    dispatch(open())
-  }
-
+const ProductCard = ({ produto, onOpenModal }: Props) => {
+  
   const getDescricao = (desc: string) => {
     if (desc.length > 130) {
         return desc.slice(0, 130) + '...'
@@ -34,7 +21,8 @@ const ProductCard = ({ produto }: Props) => {
       <div>
         <Title>{produto.nome}</Title>
         <Description>{getDescricao(produto.descricao)}</Description>
-        <AddButton onClick={addToCart}>
+        {/* Ao clicar, ele avisa a lista para abrir o modal */}
+        <AddButton onClick={onOpenModal}>
           Adicionar ao carrinho
         </AddButton>
       </div>

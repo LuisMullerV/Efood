@@ -7,7 +7,7 @@ export const HeaderBar = styled.header`
   flex-direction: column;
   align-items: center;
   padding: 40px 0;
-  height: 384px; /* Altura do banner gigante da Home */
+  height: 384px;
 `
 
 export const Container = styled.div`
@@ -22,7 +22,6 @@ export const Container = styled.div`
     padding-right: 20px;
   }
 
-  /* Se for a Home, a logo fica sozinha no centro do flexbox */
   &.home {
     justify-content: center;
   }

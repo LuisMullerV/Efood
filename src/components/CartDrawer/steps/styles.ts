@@ -26,7 +26,6 @@ export const Empty = styled.p`
   margin-top: 32px;
 `
 
-/* --- ALINHAMENTO IDÊNTICO AO FIGMA --- */
 export const Row = styled.div`
   width: 100%;
   max-width: 344px;
@@ -72,7 +71,6 @@ export const ItemImg = styled.img`
 export const ItemInfo = styled.div`
   display: flex;
   flex-direction: column;
-  /* Sem 'justify-content: center' para não empurrar o texto pro meio */
 `
 
 export const ItemName = styled.h3`
@@ -90,7 +88,6 @@ export const ItemPrice = styled.span`
   color: #E66767;
   margin: 0;
 `
-/* ------------------------------------ */
 
 export const Footer = styled.div`
   padding: 16px 8px 24px 8px;
@@ -193,13 +190,16 @@ export const InputGroupRow = styled.div`
 
 export const Button = styled(ButtonPrimary)``
 
+/* --- O CORTE DEFINITIVO ENTRE OS BOTÕES --- */
 export const ButtonSecondary = styled(ButtonPrimary)`
   background-color: #FFEBD9;
   color: #E66767;
+  margin-top: 8px !important; /* Força os 8px de respiro acima dele */
 `
 
 export const Actions = styled.div`
   margin-top: 24px;
+  display: block; /* Garante o empilhamento normal */
 `
 
 export const FormWrapper = styled.div`

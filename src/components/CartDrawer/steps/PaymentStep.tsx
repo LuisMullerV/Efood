@@ -5,18 +5,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import { usePurchaseMutation } from '../../../services/api'
 import { clearCart, prevStep } from '../../../store/cartSlice'
 import { RootState } from '../../../store'
-import { CartItem } from '../../../store/cartSlice' // Importando o tipo
-import { Button, InputGroup, InputGroupRow, FormWrapper } from './styles'
+import { CartItem } from '../../../store/cartSlice' 
+// IMPORTANTE: Adicionámos o Actions e o ButtonSecondary aqui!
+import { Button, ButtonSecondary, InputGroup, InputGroupRow, FormWrapper, Actions } from './styles'
 
 const PaymentStep = () => {
   const dispatch = useDispatch()
   const [purchase, { isLoading }] = usePurchaseMutation()
   
-  // Tipando o seletor corretamente
   const { items, delivery } = useSelector((state: RootState) => state.cart)
 
   const getTotalPrice = () => {
-    // Tipando os parâmetros do reduce
     return items.reduce((acc: number, item: CartItem) => {
       return acc + (item.price || 0)
     }, 0)
@@ -41,7 +40,6 @@ const PaymentStep = () => {
       if (!delivery) return alert('Dados de entrega ausentes')
 
       const payload = {
-        // Tipando o map
         products: items.map((item: CartItem) => ({ 
           id: item.id, 
           price: item.price 
@@ -86,7 +84,7 @@ const PaymentStep = () => {
     <FormWrapper>
     <form onSubmit={formik.handleSubmit}>
       <h3 style={{ color: '#FFEBD9', marginBottom: '16px' }}>
-        Pagamento - Valor a pagar R$ {getTotalPrice().toFixed(2)}
+        Pagamento - Valor a pagar R$ {getTotalPrice().toFixed(2).replace('.', ',')}
       </h3>
 
       <InputGroup>
@@ -103,7 +101,7 @@ const PaymentStep = () => {
       </InputGroup>
 
       <InputGroupRow>
-        <InputGroup>
+        <InputGroup className="auto-width">
           <label htmlFor="cardNumber">Número do cartão</label>
           <InputMask
             id="cardNumber"
@@ -130,7 +128,7 @@ const PaymentStep = () => {
       </InputGroupRow>
 
       <InputGroupRow>
-        <InputGroup>
+        <InputGroup className="auto-width">
           <label htmlFor="expiresMonth">Mês de vencimento</label>
           <InputMask
             id="expiresMonth"
@@ -142,7 +140,7 @@ const PaymentStep = () => {
             className={hasError('expiresMonth') ? 'error' : ''}
           />
         </InputGroup>
-        <InputGroup>
+        <InputGroup className="auto-width">
           <label htmlFor="expiresYear">Ano de vencimento</label>
           <InputMask
             id="expiresYear"
@@ -156,12 +154,16 @@ const PaymentStep = () => {
         </InputGroup>
       </InputGroupRow>
 
-      <Button type="submit" className="margin-top" disabled={isLoading}>
-        {isLoading ? 'Finalizando...' : 'Finalizar pagamento'}
-      </Button>
-      <Button type="button" className="secondary" onClick={() => dispatch(prevStep())}>
-        Voltar para a entrega
-      </Button>
+      {/* A MÁGICA: Botões dentro do Actions e usando os estilos corretos */}
+      <Actions>
+        <Button type="submit" disabled={isLoading}>
+          {isLoading ? 'Finalizando...' : 'Finalizar pagamento'}
+        </Button>
+        <ButtonSecondary type="button" onClick={() => dispatch(prevStep())}>
+          Voltar para a edição de endereço
+        </ButtonSecondary>
+      </Actions>
+      
     </form>
     </FormWrapper>
   )

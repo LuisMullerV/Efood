@@ -12,7 +12,6 @@ const Home = () => {
 
   return (
     <S.Page>
-      {/* O Header completo que criamos agora é chamado aqui */}
       <Header />
       
       <S.Container>

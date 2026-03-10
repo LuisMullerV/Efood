@@ -3,7 +3,8 @@ import * as Yup from 'yup'
 import InputMask from 'react-input-mask'
 import { useDispatch } from 'react-redux'
 import { addDeliveryDetails, nextStep, goToCart } from '../../../store/cartSlice'
-import { Button, InputGroup, InputGroupRow, FormWrapper } from './styles'
+// IMPORTANTE: Adicionámos o ButtonSecondary e o Actions à importação!
+import { Button, ButtonSecondary, InputGroup, InputGroupRow, FormWrapper, Actions } from './styles'
 
 const DeliveryStep = () => {
   const dispatch = useDispatch()
@@ -116,8 +117,14 @@ const DeliveryStep = () => {
         />
       </InputGroup>
 
-      <Button type="submit" className="margin-top">Continuar com o pagamento</Button>
-      <Button type="button" className="secondary" onClick={() => dispatch(goToCart())}>Voltar para o carrinho</Button>
+      {/* A MÁGICA: Botões dentro do Actions e usando os estilos corretos */}
+      <Actions>
+        <Button type="submit">Continuar com o pagamento</Button>
+        <ButtonSecondary type="button" onClick={() => dispatch(goToCart())}>
+          Voltar para o carrinho
+        </ButtonSecondary>
+      </Actions>
+      
     </form>
     </FormWrapper>
   )

@@ -8,7 +8,7 @@ type Product = {
     descricao: string
     foto: string
     preco: number
-    serve: string
+    porcao: string 
 }
 
 type Props = {
@@ -37,15 +37,14 @@ export default function ProductModal({ isOpen, onClose, product, onAdd }: Props)
                 </S.Close>
 
                 <S.Content>
-<S.ImageWrap>
-  <S.Image src={product.foto} alt={product.nome} />
-</S.ImageWrap>
-
+                    <S.ImageWrap>
+                        <S.Image src={product.foto} alt={product.nome} />
+                    </S.ImageWrap>
 
                     <S.Info>
                         <S.Title>{product.nome}</S.Title>
                         <S.Description>{product.descricao}</S.Description>
-                        <S.Portion>Serve: {product.serve}</S.Portion>
+                        <S.Portion>Serve: de {product.porcao}</S.Portion>
 
                         <S.AddButton type="button" onClick={onAdd}>
                             Adicionar ao carrinho - R$ {product.preco.toFixed(2).replace('.', ',')}
